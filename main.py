@@ -7,6 +7,7 @@ from geopy.geocoders import Nominatim
 
 # Создаем подключение к боту
 bot = telebot.TeleBot('6271328274:AAHQNja7nfbpALRNc4M98YPi-EbZfCN6fsY')
+#https://t.me/Bogolepov_Present_bot
 geolocator = Nominatim(user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36')
 
 # Словарь для временных данных
@@ -188,10 +189,10 @@ def main_menu_handle(call):
         bot.edit_message_text(user_id,full_text, reply_markup=buttons.get_cart_kb())
     elif call.data == 'clear_cart':
         database.delete_product_from_cart(user_id)
+        #  отправим ответ
+        bot.edit_message_text('Ваша корзина очищена', user_id, message_id,
+                              reply_markup=buttons.main_menu_kb(database.get_pr_name_id()))
 
-        edit_message_text('корзина пуста'
-                          user_id,
-        #вызов функции очистки корзины
 
 # Функция сохранения локации пользователя
 def get_location(message):

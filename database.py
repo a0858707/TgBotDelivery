@@ -175,11 +175,6 @@ def delete_product_from_cart(user_id):
     # Сохранить изменения
     connection.commit()
 
-#получить номр телефона и имя пользователя
-def get_user_number_name(user_id):
-    connection=sqlite3.connect('dostavka.db')
-    sql = connection.cursor()
-    exact_user
 
 # Вывод корзины пользователя через
 # (user_id) -> [(product, quantity, total_for_pr), (product, quantity, total_for_pr)]
@@ -199,4 +194,10 @@ def get_exact_user_cart(user_id):
                             (user_id, )).fetchall()
 
     return user_cart
-
+# Получить номер телефона и имя пользователя
+def get_user_number_name(user_id):
+    connection = sqlite3.connect('dostavka.db')
+    # переводчик/исполнитель
+    sql = connection.cursor()
+    exact_user = sql.execute('SELECT name, phone_number FROM users WHERE tg_id=?;',(user_id, )).fetchone()
+    return exact_user
